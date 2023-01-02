@@ -5,14 +5,23 @@ from scrapy.linkextractors import LinkExtractor
 from olx.items import OlxItem
 
 
-class ElectronicsSpider(CrawlSpider):
-    name = "electronics"
-    allowed_domains = ["www.olx.com.pk"]
+class LandSpider(CrawlSpider):
+    name = "Lands"
+    allowed_domains = ["www.olx.ua"]
     start_urls = [
-        'https://www.olx.com.pk/computers-accessories/',
-        'https://www.olx.com.pk/tv-video-audio/',
-        'https://www.olx.com.pk/games-entertainment/'
+        'https://www.olx.ua/d/uk/nedvizhimost/zemlya/arenda-zemli/',
+        'https://www.olx.ua/d/uk/nedvizhimost/zemlya/prodazha-zemli/'
     ]
+
+    HEADERS = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "uk-UA,en;q=0.5",
+        "Accept-Encoding": "gzip, deflate",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+        "Cache-Control": "max-age=0",
+    }
 
     rules = (
         Rule(LinkExtractor(allow=(), restrict_css=('.pageNextPrev',)),
